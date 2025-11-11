@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Inventory Dashboard</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f2f2f2; }
+    table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #eee; }
+    .low-stock { background: #f8d7da; }
+    select, input { padding: 5px; margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Product Inventory Dashboard</h2>
+
+  <label>Category:</label>
+  <select id="categoryFilter"><option value="all">All</option></select>
+
+  <label>Search:</label>
+  <input type="text" id="searchBox" placeholder="Search by name">
+
+  <h3>Using Fetch API</h3>
+  <table id="fetchTable">
+    <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Using jQuery $.getJSON()</h3>
+  <table id="jqueryTable">
+    <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>

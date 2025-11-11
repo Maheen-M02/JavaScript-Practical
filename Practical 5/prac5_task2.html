@@ -1,0 +1,30 @@
+  <script>
+    
+    let students = [
+      { id: 1, name: "Alice", marks: 72 },
+      { id: 2, name: "Bob", marks: 45 },
+      { id: 3, name: "Charlie", marks: 88 },
+      { id: 4, name: "Diana", marks: 53 },
+      { id: 5, name: "Ethan", marks: 39 }
+    ];
+    console.log("All Students:", students);
+
+    
+    let names = students.map(s => s.name);
+    console.log("Student Names:", names);
+
+    
+    let passed = students.filter(s => s.marks > 50);
+    console.log("Students with marks > 50:", passed);
+
+    
+    let totalMarks = students.reduce((sum, s) => sum + s.marks, 0);
+    let average = totalMarks / students.length;
+    console.log("Average Marks:", average.toFixed(2));
+
+    
+    console.log("📑 Report Card:");
+    students.forEach(s => {
+      console.log(`ID: ${s.id} | Name: ${s.name} | Marks: ${s.marks}`);
+    });
+  </script>

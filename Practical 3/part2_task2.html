@@ -1,0 +1,27 @@
+<script>
+console.log("Numbers from 1 to 10:");
+let i = 1;
+while (i <= 10) {
+  console.log(i);
+  i++;
+}
+let n = 20; 
+console.log(`\nOdd numbers from 1 to ${n}:`);
+let j = 1;
+while (j <= n) {
+  if (j % 2 !== 0) {
+    console.log(j);
+  }
+  j++;
+}
+let limit = 100; 
+console.log(`\nFibonacci numbers up to ${limit}:`);
+let a = 0, b = 1;
+while (a <= limit) {
+  console.log(a);
+  let next = a + b;
+  a = b;
+  b = next;
+}
+
+</script>

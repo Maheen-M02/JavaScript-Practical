@@ -1,0 +1,43 @@
+<script>
+    let health = parseInt(prompt("Enter the player's health (0-100): "));
+    let reputation =parseInt(prompt("Enter player's reputation(-50 - +50): "));
+    let inventory = prompt("Enter the item that player possess(eg. sword, magic ring or empty etc.):  ");
+    let heal = prompt("Has player healed before (yes/no): ");
+    let prev_attacked = prompt("Has player been previously attacked (yes/no): ");
+
+    let NPC_reaction = "";
+
+    if(health<=50 && reputation>=30){
+        NPC_reaction = "NPC: Nga that reputation of yourrs is just a joke. Go find heal yourself🙏😭";
+    }
+
+    else if(health<=50 && reputation<=0 && prev_attacked == "yes"){
+        NPC_reaction = "NPC: Nah man your hurt like hell. Here take this heal.";
+    }
+
+    else if(reputation<=-20 && (inventory == "sword"||inventory=="magic-ring")){
+       NPC_reaction = "NPC: You just spending your parents money on that item hell nahh. Get yourself some rep mann💔";
+    }
+
+    else if(reputation<=-20 && inventory == "empty"){
+        NPC_reaction = "NPC: Just turn off the game bro🙏😭";
+    }
+
+    else if(heal == "yes" && prev_attacked == "yes"){
+        NPC_reaction = "NPC: You're fit as hell man jus go kill some noobs💪";
+    }
+    else if(heal == "no" && prev_attacked == "yes"){
+        NPC_reaction = "NPC: You need my help more than anyone bro....";
+    }
+
+    else if(heal == "no" && prev_attacked == "no"){
+        NPC_reaction = "NPC: Jus tag along with me man.";
+    }
+
+    else{
+        NPC_reaction = "NPC: I dont know shi about you man. Tell me about yourself";
+    }
+
+    console.log(NPC_reaction)
+
+</script>

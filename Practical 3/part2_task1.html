@@ -1,0 +1,28 @@
+<script>// Task 1: Print the numbers from 1 to 10 using a for loop
+console.log("Numbers from 1 to 10:");
+for (let i = 1; i <= 10; i++) {
+  console.log(i);
+}
+
+// Task 2: Print only the even numbers from an array
+let numbers = [4, 7, 10, 13, 16, 19, 22];
+console.log("\nEven numbers in the array:");
+for (let i = 0; i < numbers.length; i++) {
+  if (numbers[i] % 2 === 0) {
+    console.log(numbers[i]);
+  }
+}
+
+// Task 3: Find and print the longest string from an array of strings
+let strings = ["apple", "banana", "strawberry", "kiwi", "pineapple"];
+let longest = "";
+
+for (let i = 0; i < strings.length; i++) {
+  if (strings[i].length > longest.length) {
+    longest = strings[i];
+  }
+}
+
+console.log("\nLongest string in the array:");
+console.log(longest);
+</script>

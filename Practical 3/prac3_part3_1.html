@@ -1,0 +1,23 @@
+<script>
+let marks = parseFloat(prompt("Enter your marks:"));
+
+let grade;
+
+if (marks >= 90 && marks <= 100) {
+  grade = "A+ (Excellent)";
+} else if (marks >= 80) {
+  grade = "A (Very Good)";
+} else if (marks >= 70) {
+  grade = "B (Good)";
+} else if (marks >= 60) {
+  grade = "C (Satisfactory)";
+} else if (marks >= 50) {
+  grade = "D (Pass)";
+} else if (marks >= 0) {
+  grade = "F (Fail)";
+} else {
+  grade = "Invalid marks entered!";
+}
+
+alert(`You scored ${marks}. Your grade is: ${grade}`);
+</script>

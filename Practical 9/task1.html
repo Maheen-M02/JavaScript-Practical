@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JS Tasks Demo</title>
+  <style>
+    body.light { background: #fff; color: #000; }
+    body.dark { background: #111; color: #fff; }
+    textarea { display: block; margin-top: 10px; width: 300px; height: 80px; }
+    button, select, input { margin: 5px; }
+  </style>
+</head>
+<body>
+
+  <h2> Task 1: Theme Toggle</h2>
+  <button id="themeToggle">Toggle Theme</button>
+
+  <h2> Task 2: Font Size</h2>
+  <select id="fontSize">
+    <option value="small">small</option>
+    <option value="medium">medium</option>
+    <option value="large">large</option>
+  </select>
+
+  <h2> Task 3: Username Greeting</h2>
+  <input type="text" id="username" placeholder="Enter your name" />
+  <p id="greeting"></p>
+
+  <h2> Task 4: Session Counter</h2>
+  <p id="sessionCount"></p>
+
+  <h2> Task 5: Feedback</h2>
+  <textarea id="feedback" placeholder="Type your feedback here..."></textarea>
+
+  <h2> Final Task: Reset Preferences</h2>
+  <button id="resetPrefs">Reset Preferences</button>
+
+  
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const body = document.body;
+    const THEME_KEY = "theme";
+    let currentTheme = localStorage.getItem(THEME_KEY) || "light";
+    body.classList.remove("light", "dark");
+    body.classList.add(currentTheme);
+
+    themeToggle.addEventListener("click", () => {
+      currentTheme = currentTheme === "light" ? "dark" : "light";
+      body.classList.remove("light", "dark");
+      body.classList.add(currentTheme);
+      localStorage.setItem(THEME_KEY, currentTheme);
+    });
+  </script>
+
+  <!-- Task 2 -->
+  <script>
+    const fontSizeDropdown = document.getElementById("fontSize");
+    const FONT_KEY = "fontSizePref";
+    let fontSize = localStorage.getItem(FONT_KEY) || "medium";
+    document.documentElement.style.fontSize = fontSize;
+    fontSizeDropdown.value = fontSize;
+    fontSizeDropdown.addEventListener("change", (e) => {
+      fontSize = e.target.value;
+      document.documentElement.style.fontSize = fontSize;
+      localStorage.setItem(FONT_KEY, fontSize);
+    });
+  </script>
+
+  <!-- Task 3 -->
+  <script>
+    const usernameInput = document.getElementById("username");
+    const greeting = document.getElementById("greeting");
+    const USER_KEY = "username";
+    const savedName = localStorage.getItem(USER_KEY);
+    if (savedName) {
+      greeting.textContent = `Welcome back, ${savedName}!`;
+      usernameInput.value = savedName;
+    }
+    usernameInput.addEventListener("input", () => {
+      const name = usernameInput.value.trim();
+      localStorage.setItem(USER_KEY, name);
+      greeting.textContent = name ? `Welcome, ${name}!` : "";
+    });
+  </script>
+
+  <!-- Task 4 -->
+  <script>
+    const sessionCounter = document.getElementById("sessionCount");
+    let count = sessionStorage.getItem("count");
+    count = count ? Number(count) + 1 : 1;
+    sessionStorage.setItem("count", count);
+    sessionCounter.textContent = `This tab has been reloaded ${count} times.`;
+  </script>
+
+  <!-- Task 5 -->
+  <script>
+    const feedbackBox = document.getElementById("feedback");
+    const FEEDBACK_KEY = "feedback";
+    const savedFeedback = sessionStorage.getItem(FEEDBACK_KEY);
+    if (savedFeedback) {
+      feedbackBox.value = savedFeedback;
+    }
+    feedbackBox.addEventListener("input", () => {
+      sessionStorage.setItem(FEEDBACK_KEY, feedbackBox.value);
+    });
+  </script>
+
+  <!-- Final Task -->
+  <script>
+    const resetBtn = document.getElementById("resetPrefs");
+    resetBtn.addEventListener("click", () => {
+      localStorage.clear();
+      location.reload();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<script>
+    function reverseString(string) {
+  if (typeof string !== "string" ) {
+    throw new Error("Invalid string input");
+  }
+
+
+  return string.split("").reverse().join("");
+}
+
+function isPalindrome(string) {
+  return string === reverseString(string);
+}
+
+try {
+  let string = prompt("Enter a string:");
+  console.log("Reversed:", reverseString(string));
+  console.log("Is Palindrome:", isPalindrome(string));
+} catch (err) {
+  console.log("Error:", err.message);
+}
+
+</script>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fair Grader with Slider</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .topper {
+      border: 2px solid green;
+      box-shadow: 0 0 10px green;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">📚 Fair Grader </h2>
+
+  <form id="graderForm" class="bg-white p-4 rounded shadow">
+
+
+    <h5>Student 1</h5>
+    <input type="text" id="name1" value="Aryan" class="form-control mb-2" readonly>
+    <input type="number" id="roll1" value="101" class="form-control mb-2" readonly>
+    <label>Subject 1: <span id="val1_1">0</span></label>
+    <input type="range" id="m1_1" min="0" max="100" value="0" class="form-range mb-2" oninput="val1_1.innerText = this.value">
+    <label>Subject 2: <span id="val1_2">0</span></label>
+    <input type="range" id="m1_2" min="0" max="100" value="0" class="form-range mb-2" oninput="val1_2.innerText = this.value">
+    <label>Subject 3: <span id="val1_3">0</span></label>
+    <input type="range" id="m1_3" min="0" max="100" value="0" class="form-range mb-4" oninput="val1_3.innerText = this.value">
+
+    
+    <h5>Student 2</h5>
+    <input type="text" id="name2" value="Riya" class="form-control mb-2" readonly>
+    <input type="number" id="roll2" value="102" class="form-control mb-2" readonly>
+    <label>Subject 1: <span id="val2_1">0</span></label>
+    <input type="range" id="m2_1" min="0" max="100" value="0" class="form-range mb-2" oninput="val2_1.innerText = this.value">
+    <label>Subject 2: <span id="val2_2">0</span></label>
+    <input type="range" id="m2_2" min="0" max="100" value="0" class="form-range mb-2" oninput="val2_2.innerText = this.value">
+    <label>Subject 3: <span id="val2_3">0</span></label>
+    <input type="range" id="m2_3" min="0" max="100" value="0" class="form-range mb-4" oninput="val2_3.innerText = this.value">
+
+    <!-- Student 3 -->
+    <h5>Student 3</h5>
+    <input type="text" id="name3" value="Kabir" class="form-control mb-2" readonly>
+    <input type="number" id="roll3" value="103" class="form-control mb-2" readonly>
+    <label>Subject 1: <span id="val3_1">0</span></label>
+    <input type="range" id="m3_1" min="0" max="100" value="0" class="form-range mb-2" oninput="val3_1.innerText = this.value">
+    <label>Subject 2: <span id="val3_2">0</span></label>
+    <input type="range" id="m3_2" min="0" max="100" value="0" class="form-range mb-2" oninput="val3_2.innerText = this.value">
+    <label>Subject 3: <span id="val3_3">0</span></label>
+    <input type="range" id="m3_3" min="0" max="100" value="0" class="form-range mb-4" oninput="val3_3.innerText = this.value">
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Show Results</button>
+    </div>
+  </form>
+
+  <!-- Results area -->
+  <div id="results" class="row mt-4"></div>
+
+  <footer class="text-center mt-4">
+    Made by <b>Maheen</b> | Time: <span id="time"></span>
+  </footer>
+</div>
+
+<script>
+  function getGrade(avg) {
+    if (avg >= 90) return "A";
+    else if (avg >= 75) return "B";
+    else if (avg >= 50) return "C";
+    else return "F";
+  }
+
+  function getRemark(grade) {
+    if (grade === "A") return "Excellent";
+    if (grade === "B") return "Good";
+    if (grade === "C") return "Needs Improvement";
+    return "Fail";
+  }
+
+  document.getElementById("graderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let total1 = Number(m1_1.value) + Number(m1_2.value) + Number(m1_3.value);
+    let avg1 = total1 / 3;
+    let grade1 = getGrade(avg1);
+    let remark1 = getRemark(grade1);
+
+    let total2 = Number(m2_1.value) + Number(m2_2.value) + Number(m2_3.value);
+    let avg2 = total2 / 3;
+    let grade2 = getGrade(avg2);
+    let remark2 = getRemark(grade2);
+
+    let total3 = Number(m3_1.value) + Number(m3_2.value) + Number(m3_3.value);
+    let avg3 = total3 / 3;
+    let grade3 = getGrade(avg3);
+    let remark3 = getRemark(grade3);
+
+    let maxAvg = Math.max(avg1, avg2, avg3);
+
+    results.innerHTML = `
+      <div class="col-md-4">
+        <div class="card p-3 shadow ${avg1 === maxAvg ? 'topper' : ''}">
+          <h5>${name1.value} (Roll ${roll1.value})</h5>
+          <p>Avg: ${avg1.toFixed(2)}</p>
+          <p>Grade: ${grade1}</p>
+          <p>Remark: ${remark1}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 shadow ${avg2 === maxAvg ? 'topper' : ''}">
+          <h5>${name2.value} (Roll ${roll2.value})</h5>
+          <p>Avg: ${avg2.toFixed(2)}</p>
+          <p>Grade: ${grade2}</p>
+          <p>Remark: ${remark2}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 shadow ${avg3 === maxAvg ? 'topper' : ''}">
+          <h5>${name3.value} (Roll ${roll3.value})</h5>
+          <p>Avg: ${avg3.toFixed(2)}</p>
+          <p>Grade: ${grade3}</p>
+          <p>Remark: ${remark3}</p>
+        </div>
+      </div>
+    `;
+
+    time.innerText = new Date().toLocaleTimeString();
+  });
+</script>
+
+</body>
+</html>

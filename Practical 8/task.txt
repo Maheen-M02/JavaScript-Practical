@@ -1,0 +1,181 @@
+/*
+NAME: NIDHI MANGTANI (23070521098)
+SUBJECT: JAVASCRIPT
+FINAL PRACTICAL TASK - GYM ADMISSION FORM
+--------------------------------------------------
+TITLE: Dynamic Gym Admission Form with Real-Time Validation
+--------------------------------------------------
+
+PROBLEM STATEMENT:
+You are required to design and implement a **Gym Admission Form** with comprehensive 
+form handling and live validation using **JavaScript events**, **form properties**, 
+and **HTML5 validation features**.
+
+The form should dynamically validate all user inputs in **real-time (as user types)** 
+and during **submission** using JavaScript event listeners, custom validation messages, 
+and DOM manipulation.
+
+--------------------------------------------------
+FORM REQUIREMENTS:
+--------------------------------------------------
+Your form must include all core **HTML5 input types**:
+• Text
+• Email
+• Number
+• Date
+• Password
+• Checkbox
+• Radio
+• Select
+• File
+
+And must handle all key **form events**:
+• onsubmit
+• onblur
+• onchange
+• oninput / onkeyup
+• oninvalid
+• onreset
+
+Custom messages should be shown using `setCustomValidity()` and 
+form properties such as `.elements`, `.value`, `.checked`, `.length`, 
+`.action`, `.method`, `.name`, etc., should be demonstrated.
+
+--------------------------------------------------
+FORM FIELDS (MINIMUM REQUIRED):
+--------------------------------------------------
+| Field              | Type     | Validation Rules |
+|--------------------|----------|------------------|
+| Full Name          | text     | Required, ≥ 3 chars, alphabets only |
+| Email              | email    | Required, valid format |
+| Age                | number   | Between 18–60 |
+| Gender             | radio    | Required |
+| Membership Type    | select   | Cannot be default option |
+| Password           | password | Must include uppercase, lowercase, number, special char |
+| Confirm Password   | password | Must match Password |
+| Phone              | text     | Exactly 10 digits, numbers only |
+| Date of Birth      | date     | Must not be in future |
+| Profile Photo      | file     | Only .jpg/.png, ≤ 1MB |
+| Terms & Conditions | checkbox | Must be checked |
+
+--------------------------------------------------
+JAVASCRIPT REQUIREMENTS:
+--------------------------------------------------
+1. ACCESSING FORMS AND ELEMENTS
+   - Use both `document.forms["formName"]` and `getElementById()` in different parts.
+   - Display total number of form elements using `form.length`.
+
+2. FORM EVENTS
+   - **onsubmit:** Prevent form submission until all fields are valid.
+   - **onblur:** Show warning when a field loses focus and is invalid.
+   - **onchange:** Validate dropdowns, radios, and checkboxes.
+   - **oninput / onkeyup:** Live validation for text, email, password fields.
+   - **oninvalid:** Show custom error messages.
+   - **onreset:** Clear all validation messages dynamically.
+
+3. VALIDATION TECHNIQUES
+   - Required field check using `trim()`.
+   - Data type validation with `isNaN()` and regex for alphabets.
+   - Range & length checks for numeric and password fields.
+   - Regex patterns for email, password, and phone.
+   - Compare passwords live.
+   - Validate checkbox, radio, and dropdown selections.
+   - Validate file type & size.
+   - Validate date to ensure no future date of birth.
+   - Use `setCustomValidity()` and `reportValidity()` for user feedback.
+
+4. LIVE ERROR DISPLAY
+   - Each field must have a `<span>` or `<div>` below it showing:
+       ✅ “Valid” or ❌ “Error message”
+   - Errors must update instantly as the user types.
+
+5. FINAL FORM SUBMISSION
+   - On success: display message → “Form submitted successfully! Welcome to FitZone Gym.”
+   - Use `preventDefault()` to handle submission manually.
+   - Optional: show confirmation preview box with selected membership, name, and email.
+
+--------------------------------------------------
+BONUS REQUIREMENTS (EXTRA MARKS):
+--------------------------------------------------
+• Disable Submit button until all validations pass.  
+• Display preview with Name, Email, and Membership before final submission.  
+• Use color-coded feedback (red/green/yellow) and CSS transitions.  
+
+--------------------------------------------------
+RESTRICTIONS:
+--------------------------------------------------
+✖ No external JS libraries (e.g., jQuery, Bootstrap, React).  
+✖ No AI-generated templates or copied logic.  
+✔ All code must be handwritten and properly commented.  
+
+--------------------------------------------------
+SAMPLE OUTPUT (Visual Description):
+--------------------------------------------------
+🏋️‍♀️ FITZONE GYM ADMISSION FORM
+
+Full Name: [__________]
+❌ Name must be at least 3 letters
+
+Email: [__________]
+✅ Valid email address
+
+Age: [__]
+❌ Must be between 18–60
+
+Gender: ( ) Male ( ) Female ( ) Other
+❌ Please select your gender
+
+Membership Type: [Monthly ▼]
+✅ Membership selected
+
+Password: [********]
+❌ Weak password – include uppercase, lowercase, number, special char.
+
+Confirm Password: [********]
+✅ Passwords match
+
+Phone: [__________]
+❌ Must be exactly 10 digits
+
+Date of Birth: [yyyy-mm-dd]
+✅ Valid date
+
+Profile Photo: [Choose File]
+❌ Only JPG/PNG ≤ 1MB allowed
+
+☐ I agree to terms & conditions
+❌ Please accept terms to continue
+
+[Submit] [Reset]
+
+--------------------------------------------------
+LIVE VALIDATION BEHAVIOR SUMMARY:
+--------------------------------------------------
+• Borders turn 🔴 red → 🟢 green in real time.
+• Validation messages update as user types.
+• Invalid fields show ❌ messages instantly.
+• Corrected fields show ✅ messages immediately.
+• Submit button remains disabled until all validations are ✅.
+• Reset clears all fields and messages instantly.
+
+--------------------------------------------------
+VISUAL FEEDBACK COLOR GUIDE:
+--------------------------------------------------
+🔴 Red Border  → Field invalid  
+🟢 Green Border → Field valid  
+⚠️ Yellow Border → Partial / Weak input  
+✅ Message → Validation success  
+❌ Message → Validation failed  
+
+--------------------------------------------------
+EVALUATION NOTES:
+--------------------------------------------------
+During evaluation, the instructor may:
+• Input incorrect data to test live validations.
+• Check the console for errors.
+• Ask for explanation of event handling and logic.
+
+--------------------------------------------------
+END OF TASK DESCRIPTION
+--------------------------------------------------
+*/

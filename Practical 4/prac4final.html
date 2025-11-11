@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library Menu App</title>
+</head>
+<body>
+  <h2>📚 Library Menu App (Open Console)</h2>
+  <p>Use the menu in the console (F12) and follow prompts.</p>
+
+  <script>
+  
+    function isPrime(n) {
+      if (n < 2) return false;
+      for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+      }
+      return true;
+    }
+
+    
+    function factorial(n) {
+      if (n < 0) throw new Error("Negative number not allowed");
+      return n === 0 ? 1 : n * factorial(n - 1);
+    }
+
+    
+    function rareBookNote() {
+      let note = "";
+      return {
+        store: (newNote) => { note = newNote; },
+        retrieve: () => note
+      };
+    }
+    const rareNote = rareBookNote();
+
+   
+    function menu() {
+      try {
+        let choice = prompt(
+          "--- 📚 Library Menu ---\n" +
+          "1. Compare two books\n" +
+          "2. Generate factorial-based ticket ID\n" +
+          "3. Check if a note contains 'Library'\n" +
+          "4. Store/Retrieve a rare book note\n" +
+          "5. Reverse ISBN & check palindrome\n" +
+          "6. Check if a book title is palindrome\n" +
+          "7. Square root of total pages read\n" +
+          "8. Check if shelf number is prime\n" +
+          "9. Exit\n\n" +
+          "Enter your choice:"
+        );
+
+        switch (choice) {
+          case "1":
+            try {
+              let pages1 = parseInt(prompt("Enter pages of Book 1:"));
+              let pages2 = parseInt(prompt("Enter pages of Book 2:"));
+              if (isNaN(pages1) || isNaN(pages2)) throw new Error("Invalid input");
+              alert(
+                pages1 > pages2 ? "📖 Book 1 has more pages" :
+                pages2 > pages1 ? "📖 Book 2 has more pages" :
+                "Both books have equal pages"
+              );
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "2":
+            try {
+              let n = parseInt(prompt("Enter a number:"));
+              if (isNaN(n)) throw new Error("Invalid input");
+              alert("🎫 Ticket ID: " + factorial(n));
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "3":
+            try {
+              let note = prompt("Enter a note:");
+              alert(note.includes("Library") ? "✅ Contains 'Library'" : "❌ Does not contain 'Library'");
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "4":
+            try {
+              let action = prompt("Type 'store' to save note or 'retrieve' to get note:");
+              if (action === "store") {
+                let note = prompt("Enter rare book note:");
+                rareNote.store(note);
+                alert("✅ Note stored!");
+              } else if (action === "retrieve") {
+                alert("📜 Stored Note: " + rareNote.retrieve());
+              } else {
+                alert("Invalid choice");
+              }
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "5":
+            try {
+              let isbn = prompt("Enter ISBN number:");
+              let reversed = isbn.split("").reverse().join("");
+              alert("🔄 Reversed ISBN: " + reversed + "\n" +
+                (isbn === reversed ? "✅ Palindrome ISBN" : "❌ Not a palindrome"));
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "6":
+            try {
+              let title = prompt("Enter book title:");
+              let clean = title.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+              let reversed = clean.split("").reverse().join("");
+              alert(clean === reversed ? "✅ Palindrome Title" : "❌ Not a palindrome");
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "7":
+            try {
+              let pages = parseFloat(prompt("Enter total pages read:"));
+              if (isNaN(pages) || pages < 0) throw new Error("Invalid input");
+              alert("📐 Square Root: " + Math.sqrt(pages).toFixed(2));
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "8":
+            try {
+              let num = parseInt(prompt("Enter shelf number:"));
+              if (isNaN(num)) throw new Error("Invalid input");
+              alert(isPrime(num) ? "✅ Prime Shelf Number" : "❌ Not Prime");
+            } catch (err) { alert("Error: " + err.message); }
+            break;
+
+          case "9":
+            alert("👋 Exiting... Goodbye!");
+            return;
+
+          default:
+            alert("❌ Invalid choice. Please try again.");
+        }
+      } catch (err) {
+        alert("Unexpected Error: " + err.message);
+      }
+      menu(); 
+    }
+
+    
+    menu();
+  </script>
+</body>
+</html>

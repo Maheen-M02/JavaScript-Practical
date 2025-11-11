@@ -1,0 +1,19 @@
+<script>
+const secret = 7;
+
+let guess;
+
+do {
+  guess = parseInt(prompt("Guess a number between 1 and 10:"));
+
+  if (guess < secret) {
+    console.log("Too low! Try a higher number.");
+  } else if (guess > secret) {
+    console.log("Too high! Try a lower number.");
+  }
+
+} while (guess !== secret);
+
+console.log("🎉 Correct! You guessed the number.");
+
+</script>

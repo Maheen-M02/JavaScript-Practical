@@ -1,0 +1,25 @@
+<script>
+function isSqrt(num) {
+  try {
+    if (typeof num !== "number" || isNaN(num)) {
+      throw new Error("Input must be a valid number");
+    }
+    if (num < 0) {
+      throw new Error("Cannot take square root of negative number");
+    }
+    return Math.sqrt(num);
+  } catch (err) {
+    console.log("Error:", err.message);
+    return null; 
+  }
+}
+
+
+console.log("Square root of 25:", isSqrt(25));  
+
+
+console.log("Square root of 'abc':", isSqrt("abc"));  
+
+
+console.log("Square root of -9:", isSqrt(-9));  
+</script>

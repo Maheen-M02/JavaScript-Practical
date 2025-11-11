@@ -1,0 +1,10 @@
+<input type="file" onchange="show(this)">
+<br><br>
+<img id="pic" width="200">
+
+<script>
+  function show(input) {
+    let file = input.files[0];
+    pic.src = URL.createObjectURL(file);
+  }
+</script>

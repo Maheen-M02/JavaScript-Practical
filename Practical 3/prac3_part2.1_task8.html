@@ -1,0 +1,14 @@
+<script>
+  const arr = [1, 2, 3, 4, 5];
+  let reversed = [];
+  let i = arr.length - 1;
+  let j = 0;
+
+  do {
+    reversed[j] = arr[i];
+    i--;
+    j++;
+  } while (i >= 0);
+
+  console.log("Reversed array:", reversed);
+</script>

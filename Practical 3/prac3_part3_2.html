@@ -1,0 +1,9 @@
+<input id="email" placeholder="Enter your email">
+<button onclick="check()">Submit</button>
+
+<script>
+  function check() {
+    let e = email.value;
+    alert(e.includes("@") && e.includes(".") ? "Valid email: " + e : "Invalid email");
+  }
+</script>

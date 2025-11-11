@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Console and DOM Practice</title>
+</head>
+<body>
+
+  <h2>Task 2: Console and DOM Practice</h2>
+
+  <p id="message">Press the button.</p>
+
+  <button onclick="handleClick()">Click Me</button>
+
+  <script>
+    function handleClick() {
+      console.log("Button was clicked!");
+      document.getElementById("message").innerText = "The button was clicked!";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<script>
+  const randomNumber = 7;
+  let userGuess;
+
+  do {
+    userGuess = parseInt(prompt("Guess the number between 1 and 10:"));
+    if (userGuess !== randomNumber) {
+      console.log("Wrong guess, try again.");
+    }
+  } while (userGuess !== randomNumber);
+
+  console.log("Correct! You guessed it.");
+</script>

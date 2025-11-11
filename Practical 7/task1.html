@@ -1,0 +1,19 @@
+<script>
+  
+  function addItem() {
+    const input = document.getElementById("itemInput");
+    const list = document.getElementById("itemList");
+
+    if (input.value.trim() !== "") {
+      const li = document.createElement("li");
+      li.textContent = input.value;
+      list.appendChild(li);
+      input.value = ""; 
+    }
+  }
+</script>
+
+<input type="text" id="itemInput" placeholder="Type something..." />
+<button onclick="addItem()">Add</button>
+
+<ul id="itemList"></ul>

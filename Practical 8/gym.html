@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gym Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h1>NIDHI's Gym Admission Form</h1>
+
+<form name="gymform" onsubmit="return submitform(event)">
+
+<label>Full Name:</label>
+<input type="text" id="fname" oninput="checkname()" onblur="checkname()">
+<span id="nameerr"></span>
+
+<label>Email:</label>
+<input type="email" id="mail" oninput="checkmail()" onblur="checkmail()">
+<span id="mailerr"></span>
+
+<label>Age:</label>
+<input type="number" id="age" oninput="checkage()">
+<span id="ageerr"></span>
+
+<label>Gender:</label>
+<div class="radio">
+<input type="radio" name="gender" onchange="checkgender()"> Male
+<input type="radio" name="gender" onchange="checkgender()"> Female
+<input type="radio" name="gender" onchange="checkgender()"> Other
+</div>
+<span id="gendererr"></span>
+
+<label>Membership Type:</label>
+<select id="member" onchange="checkmember()">
+<option value="">Select Plan</option>
+<option value="Monthly">Monthly</option>
+<option value="Quarterly">Quarterly</option>
+<option value="Yearly">Yearly</option>
+</select>
+<span id="membererr"></span>
+
+<label>Password:</label>
+<input type="password" id="pass" oninput="checkpass()">
+<span id="passerr"></span>
+
+<label>Confirm Password:</label>
+<input type="password" id="cpass" oninput="checkcpass()">
+<span id="cpasserr"></span>
+
+<label>Phone Number:</label>
+<input type="text" id="phone" oninput="checkphone()">
+<span id="phoneerr"></span>
+
+<label>Date of Birth:</label>
+<input type="date" id="dob" onchange="checkdob()">
+<span id="doberr"></span>
+
+<label>Profile Photo:</label>
+<input type="file" id="photo" onchange="checkphoto()">
+<span id="photoerr"></span>
+
+<label class="checkbox">
+<input type="checkbox" id="terms" onchange="checkterms()">
+I agree to terms and conditions
+</label>
+<span id="termserr"></span>
+
+<div class="buttons">
+<button type="submit">Submit</button>
+<button type="reset" onclick="resetform()">Reset</button>
+</div>
+
+<div id="success"></div>
+
+</form>
+</div>
+
+<script>
+var f = document.forms["gymform"];
+console.log("Total fields: " + f.length);
+
+// validation status
+var v = {n:false, m:false, a:false, g:false, mem:false, p:false, cp:false, ph:false, d:false, pic:false, t:false};
+
+function checkname() {
+var n = document.getElementById("fname").value.trim();
+var err = document.getElementById("nameerr");
+var inp = document.getElementById("fname");
+if(n.length < 3) {
+err.innerHTML = "❌ Name must be 3+ letters";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.n = false;
+return;
+}
+if(!/^[A-Za-z ]+$/.test(n)) {
+err.innerHTML = "❌ Only alphabets";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.n = false;
+return;
+}
+err.innerHTML = "✅ Good";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.n = true;
+}
+
+function checkmail() {
+var e = document.getElementById("mail").value.trim();
+var err = document.getElementById("mailerr");
+var inp = document.getElementById("mail");
+if(e == "") {
+err.innerHTML = "❌ Email required";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.m = false;
+return;
+}
+if(!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(e)) {
+err.innerHTML = "❌ Invalid email";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.m = false;
+return;
+}
+err.innerHTML = "✅ Valid";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.m = true;
+}
+
+function checkage() {
+var a = document.getElementById("age").value;
+var err = document.getElementById("ageerr");
+var inp = document.getElementById("age");
+if(a == "" || isNaN(a) || a < 18 || a > 60) {
+err.innerHTML = "❌ Age 18-60 only";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.a = false;
+return;
+}
+err.innerHTML = "✅ Valid";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.a = true;
+}
+
+function checkgender() {
+var r = document.getElementsByName("gender");
+var err = document.getElementById("gendererr");
+var ok = false;
+for(var i = 0; i < r.length; i++) {
+if(r[i].checked) {
+ok = true;
+break;
+}
+}
+if(!ok) {
+err.innerHTML = "❌ Select gender";
+err.style.color = "red";
+v.g = false;
+return;
+}
+err.innerHTML = "✅ Selected";
+err.style.color = "green";
+v.g = true;
+}
+
+function checkmember() {
+var m = document.getElementById("member").value;
+var err = document.getElementById("membererr");
+var inp = document.getElementById("member");
+if(m == "") {
+err.innerHTML = "❌ Select plan";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.mem = false;
+return;
+}
+err.innerHTML = "✅ Selected";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.mem = true;
+}
+
+function checkpass() {
+var p = document.getElementById("pass").value;
+var err = document.getElementById("passerr");
+var inp = document.getElementById("pass");
+if(p.length < 8) {
+err.innerHTML = "❌ Min 8 chars";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.p = false;
+return;
+}
+if(!/[A-Z]/.test(p) || !/[a-z]/.test(p) || !/[0-9]/.test(p) || !/[!@#$%^&*(),.?":{}|<>]/.test(p)) {
+err.innerHTML = "❌ Need upper, lower, number, special char";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.p = false;
+return;
+}
+err.innerHTML = "✅ Strong";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.p = true;
+checkcpass();
+}
+
+function checkcpass() {
+var p = document.getElementById("pass").value;
+var cp = document.getElementById("cpass").value;
+var err = document.getElementById("cpasserr");
+var inp = document.getElementById("cpass");
+if(cp == "" || p != cp) {
+err.innerHTML = "❌ Passwords don't match";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.cp = false;
+return;
+}
+err.innerHTML = "✅ Match";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.cp = true;
+}
+
+function checkphone() {
+var ph = document.getElementById("phone").value.trim();
+var err = document.getElementById("phoneerr");
+var inp = document.getElementById("phone");
+if(!/^[0-9]{10}$/.test(ph)) {
+err.innerHTML = "❌ Exactly 10 digits";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.ph = false;
+return;
+}
+err.innerHTML = "✅ Valid";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.ph = true;
+}
+
+function checkdob() {
+var d = document.getElementById("dob").value;
+var err = document.getElementById("doberr");
+var inp = document.getElementById("dob");
+if(d == "") {
+err.innerHTML = "❌ DOB required";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.d = false;
+return;
+}
+if(new Date(d) > new Date()) {
+err.innerHTML = "❌ No future date";
+err.style.color = "red";
+inp.style.border = "2px solid red";
+v.d = false;
+return;
+}
+err.innerHTML = "✅ Valid";
+err.style.color = "green";
+inp.style.border = "2px solid green";
+v.d = true;
+}
+
+function checkphoto() {
+var file = document.getElementById("photo");
+var err = document.getElementById("photoerr");
+if(file.files.length == 0) {
+err.innerHTML = "❌ Upload photo";
+err.style.color = "red";
+file.style.border = "2px solid red";
+v.pic = false;
+return;
+}
+var pic = file.files[0];
+var name = pic.name.toLowerCase();
+if(!name.endsWith(".jpg") && !name.endsWith(".png")) {
+err.innerHTML = "❌ Only JPG/PNG";
+err.style.color = "red";
+file.style.border = "2px solid red";
+v.pic = false;
+return;
+}
+if(pic.size > 1048576) {
+err.innerHTML = "❌ Max 1MB";
+err.style.color = "red";
+file.style.border = "2px solid red";
+v.pic = false;
+return;
+}
+err.innerHTML = "✅ Uploaded";
+err.style.color = "green";
+file.style.border = "2px solid green";
+v.pic = true;
+}
+
+function checkterms() {
+var t = document.getElementById("terms");
+var err = document.getElementById("termserr");
+if(!t.checked) {
+err.innerHTML = "❌ Accept terms";
+err.style.color = "red";
+v.t = false;
+return;
+}
+err.innerHTML = "✅ Accepted";
+err.style.color = "green";
+v.t = true;
+}
+
+function submitform(e) {
+e.preventDefault();
+checkname();
+checkmail();
+checkage();
+checkgender();
+checkmember();
+checkpass();
+checkcpass();
+checkphone();
+checkdob();
+checkphoto();
+checkterms();
+if(v.n && v.m && v.a && v.g && v.mem && v.p && v.cp && v.ph && v.d && v.pic && v.t) {
+var name = document.getElementById("fname").value;
+var email = document.getElementById("mail").value;
+var plan = document.getElementById("member").value;
+document.getElementById("success").innerHTML = "✅ Form submitted! Welcome to NIDHI's Gym, " + name + "!<br>Email: " + email + "<br>Plan: " + plan;
+document.getElementById("success").style.color = "green";
+document.getElementById("success").style.background = "#d4edda";
+document.getElementById("success").style.padding = "15px";
+document.getElementById("success").style.marginTop = "20px";
+} else {
+document.getElementById("success").innerHTML = "❌ Fix errors first";
+document.getElementById("success").style.color = "red";
+document.getElementById("success").style.background = "#f8d7da";
+document.getElementById("success").style.padding = "15px";
+document.getElementById("success").style.marginTop = "20px";
+}
+}
+
+function resetform() {
+var spans = document.querySelectorAll("span");
+for(var i = 0; i < spans.length; i++) {
+spans[i].innerHTML = "";
+}
+var inputs = document.querySelectorAll("input, select");
+for(var i = 0; i < inputs.length; i++) {
+inputs[i].style.border = "1px solid #ccc";
+}
+document.getElementById("success").innerHTML = "";
+v = {n:false, m:false, a:false, g:false, mem:false, p:false, cp:false, ph:false, v:false, pic:false, t:false};
+}
+</script>
+
+</body>
+</html>

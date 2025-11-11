@@ -1,0 +1,116 @@
+/* basic styling for whole page */
+body {
+font-family: Arial;
+background-color: #f0f0f0;
+margin: 0;
+padding: 20px;
+}
+
+/* main container for form */
+.container {
+max-width: 600px;
+margin: 0 auto;
+background-color: white;
+padding: 30px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* heading style */
+h1 {
+text-align: center;
+color: #333;
+margin-bottom: 30px;
+}
+
+/* label styling */
+label {
+display: block;
+margin-top: 15px;
+margin-bottom: 5px;
+color: #555;
+font-weight: bold;
+}
+
+/* input and select box styling */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="file"],
+select {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+font-size: 14px;
+}
+
+/* radio button container */
+.radio {
+margin: 10px 0;
+}
+
+.radio input {
+margin-right: 5px;
+}
+
+/* checkbox styling */
+.checkbox {
+display: block;
+margin-top: 20px;
+font-weight: normal;
+}
+
+.checkbox input {
+margin-right: 8px;
+}
+
+/* error and success message spans */
+span {
+display: block;
+margin-top: 5px;
+font-size: 13px;
+min-height: 18px;
+}
+
+/* button container */
+.buttons {
+margin-top: 25px;
+text-align: center;
+}
+
+/* button styling */
+button {
+padding: 12px 30px;
+margin: 0 10px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+}
+
+button[type="submit"] {
+background-color: #28a745;
+color: white;
+}
+
+button[type="submit"]:hover {
+background-color: #218838;
+}
+
+button[type="reset"] {
+background-color: #dc3545;
+color: white;
+}
+
+button[type="reset"]:hover {
+background-color: #c82333;
+}
+
+/* success message box */
+#success {
+border-radius: 4px;
+}
